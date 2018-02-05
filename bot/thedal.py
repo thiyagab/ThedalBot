@@ -200,11 +200,12 @@ def reply(text,bot=None,update=None,parsemode=None,chatid=None,reply_markup=None
     if bot and isgroup(update) and not isgroupadmin:
         if not chatid:
             chatid=update.effective_message.from_user.id
+        update.effective_message.reply_text(UNAUTHORIZED)
         bot.send_message(chat_id=chatid,text=text,
                          parse_mode=parsemode,
                          reply_markup=reply_markup,
                          disable_web_page_preview=disable_web_page_preview)
-        update.effective_message.reply_text(UNAUTHORIZED)
+
     elif update:
         update.effective_message.reply_text(text,
                                   parse_mode=parsemode,
