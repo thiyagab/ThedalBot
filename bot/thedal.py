@@ -145,10 +145,13 @@ def newmember(bot, update):
     # here you receive a list of new members (User Objects) in a single service message
     new_members = update.message.new_chat_members
     # do your stuff here:
-    for member in new_members:
-        faq=db.faq(update.message.chat_id)
-        if faq:
-            bot.send_message(chat_id=member.id, text="Hi "+member.name+",\nWelcome to our group\n\n"+faq)
+    faq = db.faq(update.message.chat_id)
+    if faq:
+        text=''
+        for member in new_members:
+            text+=member.name+", "
+        bot.send_message(chat_id=update.message.chat_id,
+                             text="Hi " + text + "\nWelcome to our group\n\n" + faq)
 
 def deletejobs():
     for job in updater.job_queue.jobs():
