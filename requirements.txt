@@ -1,0 +1,5 @@
+requests
+python-telegram-bot
+peewee==2.10.2
+configparser
+emoji
